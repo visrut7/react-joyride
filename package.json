@@ -1,5 +1,5 @@
 {
-  "name": "@visrut7/react-joyride",
+  "name": "react-joyride-react19-compat",
   "version": "2.9.4-react19-compat",
   "description": "Create guided tours for your apps",
   "author": "Gil Barbara <gilbarbara@gmail.com>",
@@ -8,7 +8,7 @@
     "url": "git+https://github.com/visrut7/react-joyride.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "bugs": {
     "url": "https://github.com/gilbarbara/react-joyride/issues"
