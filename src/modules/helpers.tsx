@@ -1,5 +1,4 @@
 import { cloneElement, FC, isValidElement, ReactElement, ReactNode } from 'react';
-import { createPortal } from 'react-dom';
 import innerText from 'react-innertext';
 import is from 'is-lite';
 
@@ -34,8 +33,6 @@ interface ShouldScrollOptions {
   step: Step;
   target: HTMLElement | null;
 }
-
-export const isReact16 = createPortal !== undefined;
 
 /**
  * Get the current browser
