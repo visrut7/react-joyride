@@ -1,7 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createRoot } from 'react-dom/client';
-import type { Root } from 'react-dom/client';
 
 import { canUseDOM } from '~/modules/dom';
 
@@ -12,7 +10,6 @@ interface Props {
 
 export default class JoyridePortal extends React.Component<Props> {
   node: HTMLElement | null = null;
-  root: Root | null = null;
 
   componentDidMount() {
     const { id } = this.props;
@@ -25,13 +22,6 @@ export default class JoyridePortal extends React.Component<Props> {
     this.node.id = id;
 
     document.body.appendChild(this.node);
-
-    // Create root for React 18+ compatibility
-    this.root = createRoot(this.node);
-  }
-
-  componentDidUpdate() {
-    // No need for separate update logic with createPortal
   }
 
   componentWillUnmount() {
@@ -39,14 +29,7 @@ export default class JoyridePortal extends React.Component<Props> {
       return;
     }
 
-    // Unmount using the modern React 18+ API with setTimeout to avoid race conditions
-    if (this.root) {
-      setTimeout(() => {
-        this.root?.unmount();
-      }, 0);
-      this.root = null;
-    }
-
+    // Clean up the DOM node - React will handle the portal cleanup automatically
     if (this.node.parentNode === document.body) {
       document.body.removeChild(this.node);
       this.node = null;
@@ -60,7 +43,7 @@ export default class JoyridePortal extends React.Component<Props> {
 
     const { children } = this.props;
 
-    // Use createPortal for React 18+ compatibility
+    // createPortal handles all the React 18+ portal rendering automatically
     return ReactDOM.createPortal(children, this.node);
   }
 }
